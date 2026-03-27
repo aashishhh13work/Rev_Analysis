@@ -1,0 +1,467 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body,div,span,p{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif}
+:root{
+--bg:#f0efea;--surface:#fff;--surface2:#f7f6f2;--surface3:#eeecea;
+--t1:#181816;--t2:#5a5955;--t3:#8c8b87;
+--bd:rgba(0,0,0,0.09);--bd2:rgba(0,0,0,0.15);
+--blue:#2B7EDE;--blue-l:#deeaf9;--blue-d:#0C447C;
+--teal:#0F9E72;--teal-l:#d8f0e9;--teal-d:#085040;
+--amber:#CF8000;--amber-l:#fdf0d6;--amber-d:#633806;
+--purple:#5D52C8;--purple-l:#eceafe;--purple-d:#2e2878;
+--rose:#C0375E;--rose-l:#fce8ee;--rose-d:#721e38;
+--gray:#7a7970;--gray-l:#eeede8;--gray-d:#2c2c2a;
+--r4:4px;--r8:8px;--r12:12px;--r16:16px
+}
+.db{background:var(--bg);padding:14px;min-width:0}
+.hdr{background:var(--surface);border:0.5px solid var(--bd);border-radius:var(--r12);padding:13px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:11px;gap:10px;flex-wrap:wrap}
+.hdr-l{display:flex;align-items:center;gap:12px}
+.hdr-logo{width:36px;height:36px;background:var(--blue);border-radius:var(--r8);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hdr-title{font-size:15px;font-weight:500;color:var(--t1);line-height:1.2}
+.hdr-sub{font-size:10px;color:var(--t3);margin-top:2px}
+.hdr-r{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.tag{font-size:10px;font-weight:500;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.tag-b{background:var(--blue-l);color:var(--blue-d)}
+.tag-t{background:var(--teal-l);color:var(--teal-d)}
+.tag-a{background:var(--amber-l);color:var(--amber-d)}
+.tag-p{background:var(--purple-l);color:var(--purple-d)}
+.tag-r{background:var(--rose-l);color:var(--rose-d)}
+.krow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin-bottom:10px}
+.kc{background:var(--surface);border:0.5px solid var(--bd);border-radius:var(--r8);padding:11px 13px;position:relative;overflow:hidden;cursor:default}
+.kc-top{height:2.5px;position:absolute;top:0;left:0;right:0}
+.kc-ico{width:28px;height:28px;border-radius:var(--r4);display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.kc-v{font-size:20px;font-weight:500;color:var(--t1);line-height:1;margin-bottom:4px}
+.kc-l{font-size:9px;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);margin-bottom:5px}
+.kc-d{font-size:9px;font-weight:500}
+.kc-sub{font-size:9px;color:var(--t3);margin-top:2px}
+.g2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:10px;margin-bottom:10px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:10px}
+.g2b{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:10px;margin-bottom:10px}
+.card{background:var(--surface);border:0.5px solid var(--bd);border-radius:var(--r12);padding:13px 15px}
+.ct{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);margin-bottom:11px;display:flex;align-items:center;justify-content:space-between}
+.ct-badge{font-size:9px;text-transform:none;letter-spacing:0;padding:2px 7px;border-radius:12px}
+.leg{display:flex;gap:12px;margin-bottom:9px;flex-wrap:wrap}
+.li{display:flex;align-items:center;gap:4px;font-size:9px;color:var(--t2)}
+.ls{width:7px;height:7px;border-radius:2px;flex-shrink:0}
+.frow{display:flex;align-items:center;gap:9px;margin-bottom:5px}
+.flc{min-width:68px}
+.fl{font-size:9px;color:var(--t2)}
+.fsl{font-size:8px;color:var(--t3);margin-top:1px}
+.ftrk{flex:1;background:var(--surface2);border-radius:3px;height:32px;overflow:hidden;display:flex;align-items:center;position:relative}
+.ffill{height:100%;border-radius:3px;display:flex;align-items:center;padding:0 9px}
+.fft{font-size:10px;font-weight:500}
+.fstat{min-width:84px;text-align:right}
+.fsv{font-size:12px;font-weight:500;color:var(--t1)}
+.fss{font-size:9px;color:var(--t3)}
+.farr{display:flex;align-items:center;gap:5px;padding:2px 0 3px 77px}
+.fat{font-size:9px;color:var(--t3)}
+.rec-wrap{background:var(--surface);border:1.5px solid var(--teal);border-radius:var(--r12);padding:13px 15px}
+.rec-hd{display:flex;align-items:center;gap:9px;margin-bottom:11px}
+.rec-icon-wrap{width:30px;height:30px;background:var(--teal-l);border-radius:var(--r4);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rec-ht{font-size:11px;font-weight:500;color:var(--teal-d)}
+.rec-hs{font-size:9px;color:var(--teal)}
+.rrow{display:flex;justify-content:space-between;align-items:center;padding:5.5px 0;border-top:0.5px solid var(--bd)}
+.rrl{font-size:10px;color:var(--t2)}
+.rrv{font-size:10px;font-weight:500;color:var(--t1)}
+.rrv-g{color:var(--teal-d)}
+.rrv-a{color:var(--amber-d)}
+.pnums{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:11px}
+.pn{background:var(--surface2);border-radius:var(--r4);padding:7px 9px}
+.pnl{font-size:8px;text-transform:uppercase;letter-spacing:.05em;color:var(--t3);margin-bottom:2px}
+.pnv{font-size:13px;font-weight:500;color:var(--t1)}
+.pn-hi{background:var(--teal-l)}
+.pn-hi .pnl{color:var(--teal)}
+.pn-hi .pnv{color:var(--teal-d)}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{font-size:8px;text-transform:uppercase;letter-spacing:.05em;color:var(--t3);font-weight:500;padding:0 5px 7px;text-align:right;white-space:nowrap}
+.tbl th:first-child{text-align:left}
+.tbl td{padding:5px 5px;font-size:10px;color:var(--t1);border-top:0.5px solid var(--bd)}
+.tbl td:not(:first-child){text-align:right}
+.rbw{width:48px;height:5px;background:var(--surface2);border-radius:3px;display:inline-block;vertical-align:middle;margin-left:4px;overflow:hidden}
+.rbf{height:100%;border-radius:3px}
+.fstrip{background:var(--surface);border:0.5px solid var(--bd);border-radius:var(--r12);padding:11px 18px;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;margin-top:0}
+.fsi{padding:0 14px;border-right:0.5px solid var(--bd)}
+.fsi:first-child{padding-left:0}
+.fsi:last-child{border-right:none}
+.fsl2{font-size:8px;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);margin-bottom:3px}
+.fsv2{font-size:12px;font-weight:500;color:var(--t1)}
+.fss2{font-size:8px;color:var(--t3);margin-top:1px}
+.divider{height:0.5px;background:var(--bd);margin:10px 0}
+.insight{background:var(--amber-l);border-radius:var(--r4);padding:7px 10px;display:flex;gap:7px;align-items:flex-start;margin-top:10px}
+.ins-t{font-size:9px;color:var(--amber-d);line-height:1.45}
+.ep-highlight{background:var(--teal-l);border-radius:var(--r4);padding:6px 9px;margin-top:8px}
+.ep-hl{font-size:8px;text-transform:uppercase;letter-spacing:.05em;color:var(--teal);margin-bottom:2px}
+.ep-hv{font-size:10px;color:var(--teal-d)}
+</style>
+
+<div class="db">
+
+  <div class="hdr">
+    <div class="hdr-l">
+      <div class="hdr-logo">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="9" width="4" height="7" rx="1" fill="#fff"/><rect x="7" y="5" width="4" height="11" rx="1" fill="rgba(255,255,255,0.75)"/><rect x="12" y="1" width="4" height="15" rx="1" fill="rgba(255,255,255,0.5)"/></svg>
+      </div>
+      <div>
+        <div class="hdr-title">KAM portfolio transfer &mdash; FY26&ndash;27 decision dashboard</div>
+        <div class="hdr-sub">Revenue qualification analysis &nbsp;&middot;&nbsp; Q4 FY25 evaluation &nbsp;&middot;&nbsp; 3 logic scenarios &nbsp;&middot;&nbsp; 4 contributing teams</div>
+      </div>
+    </div>
+    <div class="hdr-r">
+      <span class="tag tag-b">FY25 actuals</span>
+      <span class="tag tag-a">Decision in review</span>
+      <span class="tag tag-t">Logic 2 recommended</span>
+      <span class="tag tag-p">+30% growth target</span>
+    </div>
+  </div>
+
+  <div class="krow">
+    <div class="kc">
+      <div class="kc-top" style="background:var(--blue)"></div>
+      <div class="kc-ico" style="background:var(--blue-l)">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="#2B7EDE" stroke-width="1.3"/><path d="M4.5 7h5M7 4.5v5" stroke="#2B7EDE" stroke-width="1.3" stroke-linecap="round"/></svg>
+      </div>
+      <div class="kc-l">Total eligible orgs</div>
+      <div class="kc-v">302</div>
+      <div class="kc-sub">≥₹20K any single month</div>
+      <div class="kc-d" style="color:var(--blue)">Logic 1 full pool</div>
+    </div>
+    <div class="kc">
+      <div class="kc-top" style="background:var(--teal)"></div>
+      <div class="kc-ico" style="background:var(--teal-l)">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 9l3.5-3.5L8 8l4-5" stroke="#0F9E72" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="kc-l">2-month stable (recommended)</div>
+      <div class="kc-v">144</div>
+      <div class="kc-sub">47.7% of base pool</div>
+      <div class="kc-d" style="color:var(--teal)">₹3.24 Cr revenue base</div>
+    </div>
+    <div class="kc">
+      <div class="kc-top" style="background:var(--purple)"></div>
+      <div class="kc-ico" style="background:var(--purple-l)">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 4L6 9 3 6" stroke="#5D52C8" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 8L6 13 3 10" stroke="#5D52C8" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity=".4"/></svg>
+      </div>
+      <div class="kc-l">Highly stable orgs (3-month)</div>
+      <div class="kc-v">70</div>
+      <div class="kc-sub">23.2% of total pool</div>
+      <div class="kc-d" style="color:var(--purple)">₹2.35 Cr revenue</div>
+    </div>
+    <div class="kc">
+      <div class="kc-top" style="background:var(--amber)"></div>
+      <div class="kc-ico" style="background:var(--amber-l)">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M3 6l4-4 4 4" stroke="#CF8000" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="kc-l">KAM revenue base</div>
+      <div class="kc-v">₹3.24 Cr</div>
+      <div class="kc-sub">₹39.78L monthly avg</div>
+      <div class="kc-d" style="color:var(--amber)">Annual baseline ₹4.77 Cr</div>
+    </div>
+    <div class="kc">
+      <div class="kc-top" style="background:var(--rose)"></div>
+      <div class="kc-ico" style="background:var(--rose-l)">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 11l3.5-5L8 9l2-3 2 3" stroke="#C0375E" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="kc-l">Revenue stability rate</div>
+      <div class="kc-v">23.2%</div>
+      <div class="kc-sub">70 of 302 orgs — 3-month</div>
+      <div class="kc-d" style="color:var(--rose)">High churn risk: 76.8%</div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="ct">Revenue consistency funnel
+        <span class="ct-badge tag tag-b">302 &rarr; 144 &rarr; 70</span>
+      </div>
+
+      <div class="frow">
+        <div class="flc"><div class="fl">Logic 1</div><div class="fsl">any month ≥20K</div></div>
+        <div class="ftrk">
+          <div class="ffill" style="width:100%;background:#85B7EB">
+            <span class="fft" style="color:#042C53">302 orgs</span>
+          </div>
+        </div>
+        <div class="fstat"><div class="fsv">₹4.36 Cr</div><div class="fss">₹56.18L / mo</div></div>
+      </div>
+      <div class="farr">
+        <svg width="9" height="11" viewBox="0 0 9 11"><path d="M4.5 0v8.5M1 6l3.5 4L8 6" stroke="#aaa" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        <span class="fat">−158 orgs &nbsp;&middot;&nbsp; −₹1.12 Cr &nbsp;&middot;&nbsp; 52.3% pass rate</span>
+      </div>
+
+      <div class="frow">
+        <div class="flc"><div class="fl" style="color:var(--teal-d);font-weight:500">Logic 2</div><div class="fsl">2 consecutive months</div></div>
+        <div class="ftrk">
+          <div class="ffill" style="width:47.7%;background:var(--teal)">
+            <span class="fft" style="color:#d8f0e9">144 orgs</span>
+          </div>
+          <span style="position:absolute;right:0;top:0;bottom:0;background:var(--teal-d);color:var(--teal-l);font-size:8px;font-weight:500;padding:0 6px;display:flex;align-items:center;border-radius:0 3px 3px 0;white-space:nowrap">RECOMMENDED</span>
+        </div>
+        <div class="fstat"><div class="fsv" style="color:var(--teal-d)">₹3.24 Cr</div><div class="fss">₹39.78L / mo</div></div>
+      </div>
+      <div class="farr">
+        <svg width="9" height="11" viewBox="0 0 9 11"><path d="M4.5 0v8.5M1 6l3.5 4L8 6" stroke="#aaa" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        <span class="fat">−74 orgs &nbsp;&middot;&nbsp; −₹89L &nbsp;&middot;&nbsp; 48.6% pass rate</span>
+      </div>
+
+      <div class="frow">
+        <div class="flc"><div class="fl">Logic 3</div><div class="fsl">3 consecutive months</div></div>
+        <div class="ftrk">
+          <div class="ffill" style="width:23.2%;background:#B4B2A9">
+            <span class="fft" style="color:#2C2C2A">70</span>
+          </div>
+        </div>
+        <div class="fstat"><div class="fsv">₹2.35 Cr</div><div class="fss">₹29.10L / mo</div></div>
+      </div>
+
+      <div class="insight">
+        <svg width="13" height="13" viewBox="0 0 13 13" style="flex-shrink:0;margin-top:1px"><circle cx="6.5" cy="6.5" r="6" fill="none" stroke="#CF8000" stroke-width="1"/><text x="6.5" y="9.8" text-anchor="middle" font-size="7.5" fill="#633806" font-weight="600">!</text></svg>
+        <span class="ins-t">Only <strong>23.2%</strong> of organisations sustain ≥₹20K for 3 consecutive months. Logic 3 over-filters. Logic 2 balances consistency with portfolio coverage.</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ct">Transfer logic comparison &mdash; orgs &amp; revenue</div>
+      <div class="leg">
+        <span class="li"><span class="ls" style="background:#6BAED6"></span>Total orgs (L-axis)</span>
+        <span class="li"><span class="ls" style="background:rgba(107,174,214,0.3)"></span>Revenue ₹L (R-axis)</span>
+        <span class="li"><span class="ls" style="background:#0F9E72"></span>Logic 2 (recommended)</span>
+      </div>
+      <div style="position:relative;width:100%;height:195px"><canvas id="c1"></canvas></div>
+    </div>
+  </div>
+
+  <div class="g3">
+    <div class="card">
+      <div class="ct">Org stability by team</div>
+      <div class="leg">
+        <span class="li"><span class="ls" style="background:#B5D4F4"></span>Any month orgs</span>
+        <span class="li"><span class="ls" style="background:#2B7EDE"></span>3-month stable</span>
+      </div>
+      <div style="position:relative;width:100%;height:175px"><canvas id="c2"></canvas></div>
+    </div>
+
+    <div class="card">
+      <div class="ct">Revenue retention by team</div>
+      <div class="leg">
+        <span class="li"><span class="ls" style="background:#9FE1CB"></span>Total revenue</span>
+        <span class="li"><span class="ls" style="background:#0F6E56"></span>3-mo stable revenue</span>
+      </div>
+      <div style="position:relative;width:100%;height:175px"><canvas id="c3"></canvas></div>
+    </div>
+
+    <div class="card">
+      <div class="ct">Stability rate &amp; retention by team</div>
+      <table class="tbl">
+        <thead><tr>
+          <th style="text-align:left">Team</th>
+          <th>Orgs</th><th>Stable</th><th>Rate</th><th>Rev ret.</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>EP Team</strong></td>
+            <td>20</td><td>8</td>
+            <td><span style="color:var(--teal-d);font-weight:500">40%</span><span class="rbw"><span class="rbf" style="width:100%;background:var(--teal)"></span></span></td>
+            <td style="color:var(--teal-d);font-weight:500">89.9%</td>
+          </tr>
+          <tr>
+            <td><strong>Team 2</strong></td>
+            <td>160</td><td>45</td>
+            <td><span style="color:var(--blue-d);font-weight:500">28%</span><span class="rbw"><span class="rbf" style="width:70%;background:var(--blue)"></span></span></td>
+            <td style="color:var(--blue-d);font-weight:500">51.6%</td>
+          </tr>
+          <tr>
+            <td><strong>Team 1</strong></td>
+            <td>49</td><td>8</td>
+            <td><span style="color:var(--amber-d);font-weight:500">16%</span><span class="rbw"><span class="rbf" style="width:40%;background:var(--amber)"></span></span></td>
+            <td style="color:var(--amber-d);font-weight:500">50.8%</td>
+          </tr>
+          <tr>
+            <td><strong>Growth</strong></td>
+            <td>73</td><td>9</td>
+            <td><span style="color:var(--rose-d);font-weight:500">12%</span><span class="rbw"><span class="rbf" style="width:30%;background:var(--rose)"></span></span></td>
+            <td style="color:var(--rose-d);font-weight:500">24.7%</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="ep-highlight">
+        <div class="ep-hl">Best KAM candidate pool</div>
+        <div class="ep-hv">EP Team &mdash; 40% org stability &amp; 89.9% revenue retention despite smallest headcount (20 orgs)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="g2b">
+    <div class="card">
+      <div class="ct">FY26&ndash;27 revenue projection &mdash; Logic 2 portfolio</div>
+      <div class="pnums">
+        <div class="pn"><div class="pnl">Monthly baseline</div><div class="pnv">₹39.78 L</div></div>
+        <div class="pn"><div class="pnl">Annual baseline</div><div class="pnv">₹4.77 Cr</div></div>
+        <div class="pn"><div class="pnl">Growth assumption</div><div class="pnv">+30%</div></div>
+        <div class="pn pn-hi"><div class="pnl">FY26&ndash;27 target</div><div class="pnv">₹6.20 Cr</div></div>
+      </div>
+      <div class="leg">
+        <span class="li"><span class="ls" style="background:#85B7EB"></span>FY25 actuals (est.)</span>
+        <span class="li"><span class="ls" style="background:var(--teal)"></span>FY26 projected (+30%)</span>
+        <span class="li"><span class="ls" style="background:var(--amber)"></span>Monthly target ceiling</span>
+      </div>
+      <div style="position:relative;width:100%;height:170px"><canvas id="c4"></canvas></div>
+    </div>
+
+    <div class="rec-wrap">
+      <div class="ct" style="color:var(--teal-d)">Final transfer recommendation
+        <span class="ct-badge tag tag-t">Approved</span>
+      </div>
+      <div class="rec-hd">
+        <div class="rec-icon-wrap">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M12.5 4.5l-6 6L3 7" stroke="#0F9E72" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="rec-ht">Logic 2 &mdash; ≥₹20K for 2 consecutive months</div>
+          <div class="rec-hs">Optimal balance of coverage, consistency &amp; revenue predictability</div>
+        </div>
+      </div>
+      <div class="rrow"><span class="rrl">Transfer rule</span><span class="rrv">≥₹20K &times; 2 consecutive months</span></div>
+      <div class="rrow"><span class="rrl">Orgs to KAM</span><span class="rrv">144 organisations</span></div>
+      <div class="rrow"><span class="rrl">Revenue base</span><span class="rrv rrv-g">₹3.24 Cr</span></div>
+      <div class="rrow"><span class="rrl">Monthly run rate</span><span class="rrv">₹39.78 L / month</span></div>
+      <div class="rrow"><span class="rrl">Annual baseline</span><span class="rrv">₹4.77 Cr</span></div>
+      <div class="rrow"><span class="rrl">FY26&ndash;27 target (+30%)</span><span class="rrv rrv-g">₹6.20 Cr</span></div>
+      <div class="rrow"><span class="rrl">Orgs excluded (volatile)</span><span class="rrv rrv-a">158 orgs</span></div>
+      <div class="rrow"><span class="rrl">Revenue excluded (L1&minus;L2)</span><span class="rrv rrv-a">₹1.12 Cr</span></div>
+      <div style="margin-top:10px">
+        <div style="background:var(--surface2);border-radius:var(--r4);padding:8px 10px">
+          <div style="font-size:8px;text-transform:uppercase;letter-spacing:.06em;color:var(--t3);margin-bottom:6px">Key formulas</div>
+          <div style="font-size:9px;color:var(--t2);line-height:1.8;font-family:monospace">
+            Stability rate = 70 / 302 = 23.2%<br>
+            Annual baseline = 39.78 &times; 12 = ₹4.77 Cr<br>
+            FY26 target = 4.77 &times; 1.30 = ₹6.20 Cr<br>
+            Revenue retained = stable / total
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fstrip">
+    <div class="fsi">
+      <div class="fsl2">Transfer rule</div>
+      <div class="fsv2">Logic 2</div>
+      <div class="fss2">2-month consecutive ≥₹20K</div>
+    </div>
+    <div class="fsi">
+      <div class="fsl2">Orgs transferred</div>
+      <div class="fsv2">144</div>
+      <div class="fss2">of 302 eligible (47.7%)</div>
+    </div>
+    <div class="fsi">
+      <div class="fsl2">Revenue base</div>
+      <div class="fsv2">₹3.24 Cr</div>
+      <div class="fss2">₹39.78L monthly avg</div>
+    </div>
+    <div class="fsi">
+      <div class="fsl2">FY26&ndash;27 target</div>
+      <div class="fsv2" style="color:var(--teal-d)">₹6.20 Cr</div>
+      <div class="fss2">+30% on annual baseline</div>
+    </div>
+    <div class="fsi">
+      <div class="fsl2">Stability rate</div>
+      <div class="fsv2">23.2%</div>
+      <div class="fss2">3-month high-stability pool</div>
+    </div>
+    <div class="fsi">
+      <div class="fsl2">Best team</div>
+      <div class="fsv2">EP Team</div>
+      <div class="fss2">40% stable · 89.9% retention</div>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const dk=matchMedia('(prefers-color-scheme:dark)').matches;
+const tc=dk?'rgba(255,255,255,.45)':'rgba(0,0,0,.4)';
+const gc=dk?'rgba(255,255,255,.06)':'rgba(0,0,0,.06)';
+
+new Chart(document.getElementById('c1'),{
+  type:'bar',
+  data:{
+    labels:['Logic 1\n(any month)','Logic 2\n(2 consecutive)','Logic 3\n(3 consecutive)'],
+    datasets:[
+      {label:'Orgs',data:[302,144,70],backgroundColor:['#6BAED6','#0F9E72','#B4B2A9'],borderRadius:5,barPercentage:.5,categoryPercentage:.7,yAxisID:'y'},
+      {label:'Revenue ₹L',data:[436,324,235],backgroundColor:['rgba(107,174,214,.25)','rgba(15,158,114,.25)','rgba(180,178,169,.25)'],borderRadius:5,barPercentage:.5,categoryPercentage:.7,yAxisID:'y2'}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.dataset.label==='\u200borgs'?' '+ctx.parsed.y+' orgs':'₹'+ctx.parsed.y+'L'}}},
+    scales:{
+      x:{ticks:{color:tc,font:{size:9}},grid:{display:false},border:{display:false}},
+      y:{position:'left',title:{display:true,text:'Orgs',color:tc,font:{size:9}},ticks:{color:tc,font:{size:9}},grid:{color:gc},border:{display:false}},
+      y2:{position:'right',title:{display:true,text:'Revenue (₹L)',color:tc,font:{size:9}},ticks:{color:tc,font:{size:9},callback:v=>'₹'+v+'L'},grid:{display:false},border:{display:false}}
+    }
+  }
+});
+
+new Chart(document.getElementById('c2'),{
+  type:'bar',
+  data:{
+    labels:['Team 2','Growth','Team 1','EP Team'],
+    datasets:[
+      {label:'Any month',data:[160,73,49,20],backgroundColor:'#B5D4F4',borderRadius:3,barPercentage:.65},
+      {label:'3-mo stable',data:[45,9,8,8],backgroundColor:'#2B7EDE',borderRadius:3,barPercentage:.65}
+    ]
+  },
+  options:{
+    indexAxis:'y',responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false}},
+    scales:{
+      x:{ticks:{color:tc,font:{size:9}},grid:{color:gc},border:{display:false}},
+      y:{ticks:{color:tc,font:{size:9}},grid:{display:false},border:{display:false}}
+    }
+  }
+});
+
+new Chart(document.getElementById('c3'),{
+  type:'bar',
+  data:{
+    labels:['Team 2','Growth','Team 1','EP Team'],
+    datasets:[
+      {label:'Total ₹L',data:[223,73,59,79],backgroundColor:'#9FE1CB',borderRadius:3,barPercentage:.65},
+      {label:'Stable ₹L',data:[115,18,30,71],backgroundColor:'#0F6E56',borderRadius:3,barPercentage:.65}
+    ]
+  },
+  options:{
+    indexAxis:'y',responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'₹'+ctx.parsed.x+'L'}}},
+    scales:{
+      x:{ticks:{color:tc,font:{size:9},callback:v=>'₹'+v+'L'},grid:{color:gc},border:{display:false}},
+      y:{ticks:{color:tc,font:{size:9}},grid:{display:false},border:{display:false}}
+    }
+  }
+});
+
+const mo=['Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar'];
+const f25=[32,35,38,40,37,41,39,44,40,45,43,47];
+const f26=f25.map(v=>Math.round(v*1.3*10)/10);
+const ceil=Math.round(620/12*10)/10;
+new Chart(document.getElementById('c4'),{
+  type:'line',
+  data:{
+    labels:mo,
+    datasets:[
+      {label:'FY25 actuals',data:f25,borderColor:'#85B7EB',backgroundColor:'rgba(133,183,235,.07)',fill:true,tension:.38,pointRadius:2.5,pointBackgroundColor:'#85B7EB',borderWidth:1.5},
+      {label:'FY26 projected',data:f26,borderColor:'#0F9E72',backgroundColor:'rgba(15,158,114,.07)',fill:true,tension:.38,pointRadius:2.5,pointBackgroundColor:'#0F9E72',borderWidth:2},
+      {label:'Target ceiling',data:Array(12).fill(ceil),borderColor:'#CF8000',borderDash:[5,4],pointRadius:0,borderWidth:1.3,fill:false}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'₹'+ctx.parsed.y+'L'}}},
+    scales:{
+      x:{ticks:{color:tc,font:{size:8},maxRotation:0,autoSkip:false},grid:{display:false},border:{display:false}},
+      y:{ticks:{color:tc,font:{size:9},callback:v=>'₹'+v+'L'},grid:{color:gc},border:{display:false},min:20}
+    }
+  }
+});
+</script>
